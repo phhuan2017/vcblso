@@ -49,7 +49,7 @@ Ext.define('vcb.view.Support.ListLinkTraiView', {
                         handler:function (){
                             var form = this.up('form').getForm();
                             var tenChuongTrinh=form.getValues().tenChuongTrinh;
-////                                            console.log(MOTA);
+                                            console.log('hayghe');
                             var storeLink=Ext.getStore('vcb.store.LinkStore');
                             storeLink.load({
                                 params:{
