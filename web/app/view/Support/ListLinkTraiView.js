@@ -3,7 +3,7 @@ Ext.define('vcb.view.Support.ListLinkTraiView', {
     extend: "Ext.form.Panel",
     xtype:'ListLinkTraiView',
     itemId:'ListLinkTraiView',
-//    layout:'fit',
+//    layout:'fit', vãi 
     requires:[
         'vcb.view.Support.ListLinkGridView',
     ],
