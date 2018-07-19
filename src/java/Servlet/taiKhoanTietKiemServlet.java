@@ -8,7 +8,7 @@ package Servlet;
 import DBConnection.DBConnection;
 import Domain.VCBDomain;
 import Domain.VCBRMDomain;
-import Model.VCBKyHanEntity;
+import Model.VCBTaiKhoanTietKiem;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -46,7 +46,7 @@ import java.math.BigDecimal;
  *
  * @author hayghe
  */
-public class baoCaoKyHanServlet extends HttpServlet {
+public class taiKhoanTietKiemServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -67,10 +67,10 @@ public class baoCaoKyHanServlet extends HttpServlet {
 //        System.out.println(param_ngayTaoKyHan);
         int returnCode=0;
         Connection conn = DBConnection.getConnection();
-        List<VCBKyHanEntity> entitys = new ArrayList<VCBKyHanEntity>();
+        List<VCBTaiKhoanTietKiem> entitys = new ArrayList<VCBTaiKhoanTietKiem>();
         try {
             VCBRMDomain CV = new VCBRMDomain(conn);
-            entitys = CV.baoCaoKyHan(param_ngayTaoKyHan);
+            entitys = CV.taiKhoanTietKiem(param_ngayTaoKyHan);
             
             DBConnection.closeDB(conn);
         } catch (Exception e) {
@@ -83,39 +83,32 @@ public class baoCaoKyHanServlet extends HttpServlet {
 
 //            System.out.println("xem nao : " + Math.round(Double.parseDouble(entitys.get(0).getNAMCO().toString())));
             response.setContentType("application/vnd.ms-excel");
-            response.setHeader("Content-Disposition", "attachment; filename=KyHan"+param_ngayTaoKyHan+".xls");
+            response.setHeader("Content-Disposition", "attachment; filename=TKTietKiem_tu"+param_ngayTaoKyHan.substring(26, 30)+ param_ngayTaoKyHan.substring(32, 34)+"_den"+param_ngayTaoKyHan.substring(34, 38)+param_ngayTaoKyHan.substring(40, 42)+".xls");
             WritableWorkbook w = Workbook.createWorkbook(response.getOutputStream());
-            WritableSheet s = w.createSheet("Kyhan"+param_ngayTaoKyHan, 0);
-            s.getSettings().setDefaultColumnWidth(12);
+            WritableSheet s = w.createSheet("TKTietKiem_tu"+param_ngayTaoKyHan.substring(26, 30)+ param_ngayTaoKyHan.substring(32, 34)+"_den"+param_ngayTaoKyHan.substring(34, 38)+param_ngayTaoKyHan.substring(40, 42), 0);
+            s.getSettings().setDefaultColumnWidth(9);
             if(entitys.size()>0){
-//            s.addCell(new Label(0, 0, "Kỳ hạn"));
-            s.addCell(new Label(0, 0, "cfno"));
-            s.addCell(new Label(1, 0, "ten"));
-            s.addCell(new Label(2, 0, "tk"));
-            s.addCell(new Label(3, 0, "tktype"));
-            s.addCell(new Label(4, 0, "nt4"));
-            s.addCell(new Label(5, 0, "datopn"));
-            s.addCell(new Label(6, 0, "dudau"));
-            s.addCell(new Label(7, 0, "namco"));
-            s.addCell(new Label(8, 0, "namno"));
-            s.addCell(new Label(9, 0, "ducuoi"));
-            s.addCell(new Label(10, 0, "term"));
-            s.addCell(new Label(11, 0, "dorm"));
-            s.addCell(new Label(12, 0, "prdtyp"));
+            s.addCell(new Label(0, 0, "Số CIF"));
+            s.addCell(new Label(1, 0, "Tên tài khoản"));
+            s.addCell(new Label(2, 0, "Số tài khoản"));
+            s.addCell(new Label(3, 0, "Loại tài khoản"));
+            s.addCell(new Label(4, 0, "Ngày mở tài khoản"));
+            s.addCell(new Label(5, 0, "Dư đầu"));
+            s.addCell(new Label(6, 0, "Năm có"));
+            s.addCell(new Label(7, 0, "Năm nợ"));
+            s.addCell(new Label(8, 0, "Dư cuối"));
+            s.addCell(new Label(9, 0, "Mã sản phẩm"));
                 for(int i=0;i<entitys.size();i++){
                     s.addCell(new Label(0, i+1, entitys.get(i).getCFNO()));
                     s.addCell(new Label(1, i+1, entitys.get(i).getTEN()));
                     s.addCell(new Label(2, i+1, entitys.get(i).getTK()));
                     s.addCell(new Label(3, i+1, entitys.get(i).getTKTYPE()));
-                    s.addCell(new Label(4, i+1, entitys.get(i).getNT4()));
-                    s.addCell(new Label(5, i+1, entitys.get(i).getDATOPN()));
-                    s.addCell(new jxl.write.Number(6, i+1, (double)Math.round(entitys.get(i).getDUDAU().doubleValue()*100)/100));
-                    s.addCell(new jxl.write.Number(7, i+1, (double)Math.round(entitys.get(i).getNAMNO().doubleValue()*100)/100));
-                    s.addCell(new jxl.write.Number(8, i+1, (double)Math.round(entitys.get(i).getNAMCO().doubleValue()*100)/100));
-                    s.addCell(new jxl.write.Number(9, i+1, (double)Math.round(entitys.get(i).getDUCUOI().doubleValue()*100)/100));
-                    s.addCell(new Label(10, i+1, entitys.get(i).getTERM()));
-                    s.addCell(new Label(11, i+1, entitys.get(i).getDORM()));
-                    s.addCell(new Label(12, i+1, entitys.get(i).getPRDTYP()));
+                    s.addCell(new Label(4, i+1, entitys.get(i).getDATOPN()));
+                    s.addCell(new jxl.write.Number(5, i+1, (double)Math.round(entitys.get(i).getDUDAU().doubleValue()*100)/100));
+                    s.addCell(new jxl.write.Number(6, i+1, (double)Math.round(entitys.get(i).getNAMNO().doubleValue()*100)/100));
+                    s.addCell(new jxl.write.Number(7, i+1, (double)Math.round(entitys.get(i).getNAMCO().doubleValue()*100)/100));
+                    s.addCell(new jxl.write.Number(8, i+1, (double)Math.round(entitys.get(i).getDUCUOI().doubleValue()*100)/100));
+                    s.addCell(new Label(9, i+1, entitys.get(i).getPRDTYP()));
                 }
             }            
             w.write();

@@ -124,9 +124,9 @@ Ext.define('vcb.Core', {
          this.AjaxRequestPost('luuViecNhoServlet',{nguoiId:nguoiId,congViecId:congViecId,maViecNho:maViecNho,tenViecNho:tenViecNho,trangThaiCongViec:trangThaiCongViec,
              tienDo:tienDo,thoiHanHoanThanh:thoiHanHoanThanh,yeuCauCongViec:yeuCauCongViec,baoCao:baoCao},callback, scope);
      },    
-     baoCaoKyHanServlet:function(ngayTaoKyHan,callback, scope){
-         this.AjaxRequestPost('baoCaoKyHanServlet',{ngayTaoKyHan:ngayTaoKyHan},callback, scope);
-     },
+//     baoCaoKyHanServlet:function(ngayTaoKyHan,callback, scope){
+//       baoCaoKyHanServlet  this.AjaxRequestPost('baoCaoKyHanServlet',{ngayTaoKyHan:ngayTaoKyHan},callback, scope);
+//     },
      themMoiMapSellerIdServlet:function(sellerId,maPhong,trangThai,nguoiId,tk,callback, scope){
          this.AjaxRequestPost('themMoiMapSellerIdServlet',{sellerId:sellerId,maPhong:maPhong,trangThai:trangThai,nguoiId:nguoiId,tk:tk},callback, scope);
      },

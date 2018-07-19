@@ -70,11 +70,14 @@ Ext.application({
         'CONGVIEC':'MainControl#showQLCONGVIEC',
         'QLBH':'MainControl#showQLBH',
         'KYHAN':'MainControl#showKYHAN',
+        'TAIKHOANTIETKIEM':'MainControl#showTAIKHOANTIETKIEM',
+        'THONGTINTAISANTHECHAP':'MainControl#showTHONGTINTAISANTHECHAP',
         'CONGVAN':'MainControl#showCONGVAN',
         'XACNHANKHACHHANG':'MainControl#showXACNHANKHACHHANG',
         'CHITIEUHUYDONG':'MainControl#showCHITIEUHUYDONG',
         'QTC':'MainControl#showQTC',
-        'KHUYENMAI':'MainControl#showKHUYENMAI'
+        'KHUYENMAI':'MainControl#showKHUYENMAI',
+        'QLCD':'MainControl#showQLCD'
 //        'register':'MainControl#showRegister',
 //        'company':'MainControl#showCatalog',
 //        'gln':'MainControl#showGLN'

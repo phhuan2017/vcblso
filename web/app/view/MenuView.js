@@ -46,6 +46,7 @@ Ext.define(('vcb.view.MenuView'), {
                 },
                 {
                     xtype:'splitbutton',
+                    hidden:true,
                     itemId:'menuCongViec',
                     text:'Công Việc',
 //                    flex:1,
@@ -90,6 +91,20 @@ Ext.define(('vcb.view.MenuView'), {
                     text:'Báo cáo',
 //                    flex:1,
                     menu: [
+                        {
+                            text:'Thông tin tài sản thế chấp',
+                            icon:'./resources/img/kyhan.png',
+                            handler:function (){
+                                Ext.Router.redirect('THONGTINTAISANTHECHAP');
+                            }
+                        },
+                         {
+                            text:'Tài khoản tiết kiệm',
+                            icon:'./resources/img/kyhan.png',
+                            handler:function (){
+                                Ext.Router.redirect('TAIKHOANTIETKIEM');
+                            }
+                        },
                         {
                             text:'Kỳ hạn',
                             icon:'./resources/img/kyhan.png',
@@ -346,6 +361,48 @@ Ext.define(('vcb.view.MenuView'), {
                                         }
                                     })
                             }
+                        },
+                        { 
+                            text: 'Quản lý chức danh',
+                            itemId:'menuQuanLyChucDanh',
+                            icon:'./resources/img/user.png',
+//                            disabled :true,
+                            handler:function (){
+                                var userId=App.Session.getUserID();//lấy thông tin user id đang đăng nhập
+                                var storePhanQuyen=Ext.getStore('vcb.store.PhanQuyenStore');
+                                    storePhanQuyen.load({// tìm quyền của user
+                                        params:{
+                                            USERID:userId
+                                        },
+                                        callback: function(records, operation, success) {
+                                            for(var i=0;i<records.length;i++){//chạy từng QuyenID
+                                                var kt=0;// biến kiểm tra
+                                                var quyenId=records[i].data.QUYENID
+                                                var storeMapQuyen=Ext.getStore('vcb.store.MapQuyenStore');//kiểm tra xem có nút đó không
+                                                storeMapQuyen.load({//tím tên người tạo
+                                                    params:{
+                                                        QUYENID:quyenId
+                                                    },
+                                                    callback: function(records, operation, success) {
+                                                        var kt=0;// biến kiểm tra
+                                                        for(var j=0;j<records.length;j++){
+                                                            if(records[j].data.NUTID==7){
+                                                                kt=1;
+                                                                j=records.length
+                                                            }
+                                                        }
+                                                        if(kt==1){
+                                                            Ext.Router.redirect('QLCD');
+                                                        }else{
+                                                            Ext.Msg.alert("Thông báo","Bạn không được phép vào chức năng này");
+                                                        }
+                                                    }
+                                                })   
+                                            }
+                                        }
+                                    })
+//                                Ext.Router.redirect('QLND');
+                            }
                         }
                     ],
                     listeners: {
@@ -382,10 +439,14 @@ Ext.define(('vcb.view.MenuView'), {
                 
                 {
                     xtype: 'button',
+                    hidden:true,
                     text:'Quyền truy cập nghiệp vụ',
 //                    flex:1,
                     handler:function (){
-                        Ext.Router.redirect('QTCNV');
+                        Ext.getCmp('CenterView').activateViewItem('QuyenTruyCapND', function () {
+                            var itemview = Ext.create('vcb.view.QuyenTruyCapND.QuyenTruyCapND');
+                            return itemview;
+                        }, this);
                     }
                 },
                 {
@@ -456,10 +517,10 @@ Ext.define(('vcb.view.MenuView'), {
                 },
                 {
                     xtype:'button',
-                    text:'Thay đổi pass',
+                    text:'Thay đổi Mật khẩu',
                     handler:function (){
                        var show = Ext.create('Ext.window.Window', {
-                            title: 'Thay đổi pass',
+                            title: 'Thay đổi Mật khẩu',
                             itemId:'doiPass',
                             height: 200,
                             width: 300,

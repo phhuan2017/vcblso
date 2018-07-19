@@ -240,6 +240,18 @@
         <servlet-name>KhuyenMai_XuatDuLieu_Qua_Servlet</servlet-name>
         <servlet-class>Servlet.KhuyenMai_XuatDuLieu_Qua_Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>taiKhoanTietKiemServlet</servlet-name>
+        <servlet-class>Servlet.taiKhoanTietKiemServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>thongtinTaikhoanTiekiem</servlet-name>
+        <servlet-class>Servlet.thongtinTaikhoanTiekiem</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>thongtinTaisanThechap</servlet-name>
+        <servlet-class>Servlet.thongtinTaisanThechap</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CayGPServlet</servlet-name>
         <url-pattern>/CayGPServlet</url-pattern>
@@ -479,6 +491,18 @@
     <servlet-mapping>
         <servlet-name>KhuyenMai_XuatDuLieu_Qua_Servlet</servlet-name>
         <url-pattern>/KhuyenMai_XuatDuLieu_Qua_Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>taiKhoanTietKiemServlet</servlet-name>
+        <url-pattern>/taiKhoanTietKiemServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>thongtinTaikhoanTiekiem</servlet-name>
+        <url-pattern>/thongtinTaikhoanTiekiem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>thongtinTaisanThechap</servlet-name>
+        <url-pattern>/thongtinTaisanThechap</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

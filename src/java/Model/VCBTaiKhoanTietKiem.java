@@ -13,37 +13,29 @@ import java.util.Date;
  *
  * @author hayghe
  */
-public class VCBKyHanEntity {
+public class VCBTaiKhoanTietKiem {
     private String CFNO;
     private String TEN;
-    private String TK; 
-    private String TKTYPE;
-    private String NT4;
     private Date DATOPN;
+    private String TK; 
+    private String PRDTYP;
+    private String TKTYPE;
     private BigDecimal DUDAU;
     private BigDecimal NAMCO;
     private BigDecimal NAMNO;
     private BigDecimal DUCUOI;
-    private String TERM;
-    private String DORM;
-//    private BigDecimal Dudâua;
-//    private 
-    private String PRDTYP;
 
-    public VCBKyHanEntity(String CFNO, String TEN, String TK, String TKTYPE, String NT4, Date DATOPN, BigDecimal DUDAU, BigDecimal NAMCO, BigDecimal NAMNO, BigDecimal DUCUOI, String TERM, String DORM, String PRDTYP) {
+    public VCBTaiKhoanTietKiem(String CFNO, String TEN, String TK, String TKTYPE, Date DATOPN, BigDecimal DUDAU, BigDecimal NAMCO, BigDecimal NAMNO, BigDecimal DUCUOI, String PRDTYP) {
         this.CFNO = CFNO;
         this.TEN = TEN;
-        this.TK = TK;
-        this.TKTYPE = TKTYPE;
-        this.NT4 = NT4;
         this.DATOPN = DATOPN;
+        this.TK = TK;
+        this.PRDTYP = PRDTYP;
+        this.TKTYPE = TKTYPE;
         this.DUDAU = DUDAU;
         this.NAMCO = NAMCO;
         this.NAMNO = NAMNO;
         this.DUCUOI = DUCUOI;
-        this.TERM = TERM;
-        this.DORM = DORM;
-        this.PRDTYP = PRDTYP;
     }
 
     
@@ -63,11 +55,7 @@ public class VCBKyHanEntity {
     public String getTKTYPE() {
         return TKTYPE;
     }
-
-    public String getNT4() {
-        return NT4;
-    }
-
+  
     public String getDATOPN() {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String date;
@@ -110,15 +98,6 @@ public class VCBKyHanEntity {
         return DUCUOI;
     }
     
-
-    public String getTERM() {
-        return TERM;
-    }
-
-    public String getDORM() {
-        return DORM;
-    }
-
     public String getPRDTYP() {
         return PRDTYP;
     }
@@ -139,26 +118,13 @@ public class VCBKyHanEntity {
         this.TKTYPE = TKTYPE;
     }
 
-    public void setNT4(String NT4) {
-        this.NT4 = NT4;
-    }
-
     public void setDATOPN(Date DATOPN) {
         this.DATOPN = DATOPN;
-    }
-
-   
-
-    public void setTERM(String TERM) {
-        this.TERM = TERM;
-    }
-
-    public void setDORM(String DORM) {
-        this.DORM = DORM;
     }
 
     public void setPRDTYP(String PRDTYP) {
         this.PRDTYP = PRDTYP;
     }
+    
     
 }

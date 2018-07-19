@@ -165,6 +165,175 @@ Ext.define('vcb.view.BaoCao.CHITIEUHUYDONG.DanhSachHuyDongView',{
                     },
                     {
                         xtype: 'button',
+                        text: 'Xuất dữ liệu test',
+                        name:'addproduct',
+                        itemId:'test',
+//                        cls: 'search_all',
+//                        action:'addproduct',
+                        icon:'./resources/img/excel.png',
+                        handler:function (){
+                            var dataView = this.up('#DanhSachHuyDongView').store.data.items;
+                            var dataViewFinal= new Array();
+                            for(var i=0;i<dataView.length;i++){
+                                var arrayTemp = [];
+                                arrayTemp[0] = dataView[i].data.TK;
+                                arrayTemp[1] = dataView[i].data.TEN;
+                                arrayTemp[2] = dataView[i].data.TKTYPE;
+                                arrayTemp[3] = dataView[i].data.NT4;
+                                arrayTemp[4] = dataView[i].data.XACBAL;
+                                arrayTemp[5] = dataView[i].data.XINRAT;
+                                arrayTemp[6] = dataView[i].data.XOTACC;
+                                arrayTemp[7] = dataView[i].data.MAPHONG;
+                                arrayTemp[8] = dataView[i].data.SELLERID;
+                                arrayTemp[9] = dataView[i].data.CFNO;
+                                dataViewFinal[i] = arrayTemp;
+       
+                            }
+                             console.log(dataViewFinal);
+                            //console.log(this.up('#DanhSachHuyDongView').store.data.items);
+//          
+                            var userId=App.Session.getUserID();//lấy thông tin user id đang đăng nhập
+                            var storePhanQuyen=Ext.getStore('vcb.store.PhanQuyenStore');
+//                                    exportStore(storePhanQuyen,'aa','xlsx')
+                                storePhanQuyen.load({// tìm quyền của user
+                                    params:{
+                                        USERID:userId
+                                    },
+                                    callback: function(records, operation, success) {
+                                        for(var i=0;i<records.length;i++){//chạy từng QuyenID
+                                            var kt=0;// biến kiểm tra
+                                            var quyenId=records[i].data.QUYENID
+                                            var storeMapQuyen=Ext.getStore('vcb.store.MapQuyenStore');//kiểm tra xem có nút đó không
+                                            storeMapQuyen.load({//tím tên người tạo
+                                                params:{
+                                                    QUYENID:quyenId
+                                                },
+                                                callback: function(records, operation, success) {
+                                                    var kt=0;// biến kiểm tra
+                                                    for(var j=0;j<records.length;j++){
+                                                        if(records[j].data.NUTID==19){
+                                                            kt=19;
+                                                            j=records.length
+                                                        }
+                                                    }
+                                                    if(kt==19){
+                                                
+                                                    function exportToCsv(filename, rows) {
+                                                        var processRow = function (row) {
+                                                            var finalVal = '';
+                                                            for (var j = 0; j < row.length; j++) {
+                                                                var innerValue = row[j] === null ? '' : row[j].toString();
+                                                                if (row[j] instanceof Date) {
+                                                                    innerValue = row[j].toLocaleString();
+                                                                }
+                                                                ;
+                                                                var result = innerValue.replace(/"/g, '""');
+                                                                if (result.search(/("|,|\n)/g) >= 0)
+                                                                    result = '"' + result + '"';
+                                                                if (j > 0)
+                                                                    finalVal += ',';
+                                                                finalVal += result;
+                                                            }
+                                                            return finalVal + '\n';
+                                                        };
+                                                        var csvFile = '';
+                                                        for (var i = 0; i < rows.length; i++) {
+                                                            csvFile += processRow(rows[i]);
+                                                        }
+
+                                                        var blob = new Blob([csvFile], {type: 'text/csv;charset=utf-8;'});
+                                                        if (navigator.msSaveBlob) { // IE 10+
+                                                            navigator.msSaveBlob(blob, filename);
+                                                        } else {
+                                                            var link = document.createElement("a");
+                                                            if (link.download !== undefined) { // feature detection
+                                                                // Browsers that support HTML5 download attribute
+                                                                var url = URL.createObjectURL(blob);
+                                                                link.setAttribute("href", url);
+                                                                link.setAttribute("download", filename);
+                                                                link.style.visibility = 'hidden';
+                                                                document.body.appendChild(link);
+                                                                link.click();
+                                                                document.body.removeChild(link);
+                                                            }
+                                                        }
+                                                    }
+                                                    exportToCsv("export.csv", dataViewFinal);
+                                                    function exportToCsv(filename, rows) {
+                                                        var processRow = function (row) {
+                                                            var finalVal = '';
+                                                            for (var j = 0; j < row.length; j++) {
+                                                                var innerValue = row[j] === null ? '' : row[j].toString();
+                                                                if (row[j] instanceof Date) {
+                                                                    innerValue = row[j].toLocaleString();
+                                                                }
+                                                                ;
+                                                                var result = innerValue.replace(/"/g, '""');
+                                                                if (result.search(/("|,|\n)/g) >= 0)
+                                                                    result = '"' + result + '"';
+                                                                result = '="' + result + '"';
+                                                                if (j > 0)
+                                                                    finalVal += ',';
+                                                                finalVal += result;
+                                                            }
+                                                            return finalVal + '\n';
+                                                        };
+
+                                                        var csvFile = '';
+                                                        for (var i = 0; i < rows.length; i++) {
+                                                            csvFile += processRow(rows[i]);
+                                                        }
+
+                                                        var blob = new Blob([csvFile], {type: 'text/xls;charset=utf-8;'});
+                                                        if (navigator.msSaveBlob) { // IE 10+
+                                                            navigator.msSaveBlob(blob, filename);
+                                                        } else {
+                                                            var link = document.createElement("a");
+                                                            if (link.download !== undefined) { // feature detection
+                                                                // Browsers that support HTML5 download attribute
+                                                                var url = URL.createObjectURL(blob);
+                                                                link.setAttribute("href", url);
+                                                                link.setAttribute("download", filename);
+                                                                link.style.visibility = 'hidden';
+                                                                document.body.appendChild(link);
+                                                                link.click();
+                                                                document.body.removeChild(link);
+                                                            }
+                                                        }
+                                                    }
+                                                    exportToCsv("export.xls", dataViewFinal);
+//                                                    var tableToExcel = (function () {
+//                                                        var uri = 'data:application/vnd.ms-excel;base64,'
+//                                                                , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--><meta http-equiv="content-type" content="text/plain; charset=UTF-8"/></head><body><table>{table}</table></body></html>'
+//                                                                , base64 = function (s) {
+//                                                                    return window.btoa(unescape(encodeURIComponent(s)))
+//                                                                }
+//                                                        , format = function (s, c) {
+//                                                            return s.replace(/{(\w+)}/g, function (m, p) {
+//                                                                return c[p];
+//                                                            })
+//                                                        }
+//                                                        return function (table, name) {
+//                                                            if (!table.nodeType)
+//                                                                table = document.getElementById(table)
+//                                                            var ctx = {worksheet: name || 'Worksheet', table: table.innerHTML}
+//                                                            window.location.href = uri + base64(format(template, ctx))
+//                                                        }
+//                                                    })();
+//                                                    tableToExcel('gridview-1127-table','test');
+                                                    }else{
+                                                        Ext.Msg.alert("Thông báo","Bạn không có quyền ở chức năng này.");
+                                                    }
+                                                }
+                                            })   
+                                        }
+                                    }
+                                })
+//                            this.up('form').addParcel();
+                        }
+                    },
+                    {
+                        xtype: 'button',
                         text: 'Xuất dữ liệu',
                         margin: 5,
                         name:'addproduct',

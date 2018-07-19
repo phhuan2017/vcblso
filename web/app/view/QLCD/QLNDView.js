@@ -1,9 +1,9 @@
-Ext.define('vcb.view.QLND.QLNDView', { 
+Ext.define('vcb.view.QLCD.QLNDView', { 
     extend: "Ext.form.Panel",
     xtype:'QLNDView',
     itemId:'QLNDView',
     requires:[
-        'vcb.view.QLND.QLNDGridView',
+        'vcb.view.QLCD.QLNDGridView',
     ],
     config: {
         items:[            
@@ -71,7 +71,7 @@ Ext.define('vcb.view.QLND.QLNDView', {
                         flex: 0.5,
                         handler:function (){
                             Ext.getCmp('CenterView').activateViewItem('QLNDChiTietView',function() {
-                              var itemview= Ext.create('vcb.view.QLND.QLNDChiTietView');
+                              var itemview= Ext.create('vcb.view.QLCD.QLNDChiTietView');
                               return itemview;
                             }, this).hayghe(0);
                         }

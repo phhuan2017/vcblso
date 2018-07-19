@@ -64,6 +64,16 @@ Ext.define('vcb.controller.MainControl', {
            Ext.Router.redirect('');
        }
     },
+    showQLCD:function(){
+       if(App.Session.userName!=null){
+            this.getMainView().activateViewItem('Controller',function(){
+              var itemview= Ext.create('vcb.view.IndexView');
+              return itemview;
+            },this).showWhat("QLCDView",'vcb.view.QLCD.QLNDView',"TrangView",'vcb.view.TrangView',"Chức danh");
+       }else{
+           Ext.Router.redirect('');
+       }
+    },
     showPHONGBAN:function(){
        if(App.Session.userName!=null){
             this.getMainView().activateViewItem('Controller',function(){
@@ -120,6 +130,26 @@ Ext.define('vcb.controller.MainControl', {
               var itemview= Ext.create('vcb.view.IndexView');
               return itemview;
             },this).showWhat("KyHanTraiView",'vcb.view.BaoCao.KyHanTraiView',"TrangView","vcb.view.TrangView","Kỳ hạn");
+       }else{
+           Ext.Router.redirect('');
+       }
+    },
+    showTAIKHOANTIETKIEM:function (){
+        if(App.Session.userName!=null){
+            this.getMainView().activateViewItem('Controller',function(){
+              var itemview= Ext.create('vcb.view.IndexView');
+              return itemview;
+            },this).showWhat("TaiKhoanTietKiem",'vcb.view.BaoCao.TaiKhoanTietKiem',"TrangView","vcb.view.TrangView","Tài Khoản Tiết Kiệm");
+       }else{
+           Ext.Router.redirect('');
+       }
+    },
+     showTHONGTINTAISANTHECHAP:function (){
+        if(App.Session.userName!=null){
+            this.getMainView().activateViewItem('Controller',function(){
+              var itemview= Ext.create('vcb.view.IndexView');
+              return itemview;
+            },this).showWhat("ThongtinTaisanThechap",'vcb.view.BaoCao.ThongtinTaisanThechap',"TrangView","vcb.view.TrangView","Thông tin tài sản thế chấp (sil_co)");
        }else{
            Ext.Router.redirect('');
        }
