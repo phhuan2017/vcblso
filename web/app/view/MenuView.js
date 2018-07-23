@@ -44,24 +44,56 @@ Ext.define(('vcb.view.MenuView'), {
                         Ext.Router.redirect('home');
                     }
                 },
+//                {
+//                    xtype:'splitbutton',
+////                    hidden:true,
+//                    itemId:'menuCongViec',
+//                    text:'Công Việc',
+////                    flex:1,
+//                    menu: [
+//                        {
+////                            xtype: 'button',
+//                            text:'Công việc',
+//                            icon:'./resources/img/laptop.png',
+//                            handler:function (){
+//                                Ext.Router.redirect('CONGVIEC');
+//                            }
+//                        },
+//                        {
+////                            xtype: 'button',
+//                            text:'Quản lý công việc',
+//                            handler:function (){
+//                                Ext.Router.redirect('QLBH');
+//                                var storeNguoi=Ext.getStore('vcb.store.NguoiStore');
+//                                storeNguoi.load({
+//                                    params:{
+//                                        HOTEN:-1,
+//                                        PHONGBANID:-1,
+//                                        NGUOIID:-1
+//                                    }
+//                                })
+//                            }
+//                        }
+//                    ]
+//                },
                 {
                     xtype:'splitbutton',
-                    hidden:true,
-                    itemId:'menuCongViec',
-                    text:'Công Việc',
+//                    hidden:true,
+                    itemId:'menuQTBH',
+                    text:'Quản trị bán hàng',
 //                    flex:1,
                     menu: [
                         {
 //                            xtype: 'button',
-                            text:'Công việc',
+                            text:'Trước bán hàng',
                             icon:'./resources/img/laptop.png',
                             handler:function (){
-                                Ext.Router.redirect('CONGVIEC');
+                                Ext.Router.redirect('QuanTriBanHang');
                             }
                         },
                         {
 //                            xtype: 'button',
-                            text:'Quản lý công việc',
+                            text:'Bán hàng',
                             handler:function (){
                                 Ext.Router.redirect('QLBH');
                                 var storeNguoi=Ext.getStore('vcb.store.NguoiStore');

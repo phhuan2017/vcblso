@@ -44,7 +44,7 @@ Ext.define(('vcb.view.LoginView'), {
                             itemId:'username',
                             name:'username',
                             fieldLabel: 'Tên đăng nhập',
-//                            value:'admin',
+                            value:'admin',
                             margin:'25 6 0 35',
                             anchor:'90%',
                             listeners:{
@@ -63,7 +63,7 @@ Ext.define(('vcb.view.LoginView'), {
                             name:'password',
                             itemId:'password',
                             fieldLabel: 'Mật khẩu',
-//                            value:'huan131089',
+                            value:'huan131089',
                             inputType: 'password',
                             margin:'15 6 0 35',
                             anchor:'90%',
