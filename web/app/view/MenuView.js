@@ -93,6 +93,14 @@ Ext.define(('vcb.view.MenuView'), {
                         },
                         {
 //                            xtype: 'button',
+                            text:'Trong bán hàng',
+                            icon:'./resources/img/laptop.png',
+                            handler:function (){
+                                Ext.Router.redirect('TrongQuanTriBanHang');
+                            }
+                        },
+                        {
+//                            xtype: 'button',
                             text:'Bán hàng',
                             handler:function (){
                                 Ext.Router.redirect('QLBH');

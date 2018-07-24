@@ -53,7 +53,8 @@ Ext.application({
         'vcb.store.QuaKhuyenMaiDaNhanStore',
         'vcb.store.KhachHangTietKiemKhuyenMaiStore',
         'vcb.store.khuyenMai_BaoCao_Store',
-        'vcb.store.TruocBanHangStore'
+        'vcb.store.TruocBanHangStore',
+        'vcb.store.TrongBanHangStore'
     ],
     
 //    
@@ -79,7 +80,8 @@ Ext.application({
         'QTC':'MainControl#showQTC',
         'KHUYENMAI':'MainControl#showKHUYENMAI',
         'QLCD':'MainControl#showQLCD',
-        'QuanTriBanHang':'MainControl#showQuanTriBanHang'
+        'QuanTriBanHang':'MainControl#showQuanTriBanHang',
+        'TrongQuanTriBanHang':'MainControl#showTrongQuanTriBanHang'
 //        'register':'MainControl#showRegister',
 //        'company':'MainControl#showCatalog',
 //        'gln':'MainControl#showGLN'

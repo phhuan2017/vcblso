@@ -54,6 +54,16 @@ Ext.define('vcb.controller.MainControl', {
            Ext.Router.redirect('');
         }    
     },
+     showTrongQuanTriBanHang:function(){
+        if(App.Session.userName!=null){
+            this.getMainView().activateViewItem('Controller',function(){
+              var itemview= Ext.create('vcb.view.IndexView');
+              return itemview;
+            },this).showWhat('TrongBanHangView','vcb.view.QuanTriBanHangKhachHang.TrongBanHangView',"TrangView",'vcb.view.TrangView',"Thông tin trong bán hàng");
+        }else{
+           Ext.Router.redirect('');
+        }    
+    },
     showQLBH:function(){
         if(App.Session.userName!=null){
             this.getMainView().activateViewItem('Controller',function(){
